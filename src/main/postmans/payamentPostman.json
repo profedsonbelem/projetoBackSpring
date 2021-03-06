@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "aad348d6-af31-483c-a2c3-ec523596deda",
 		"name": "Modelo de Aplicações",
-		"description": "Esta collection permite que você faça todo o fluxo de autorização de aplicações.",
+		"description": "Esta  collection nos permite que você faça todo o fluxo de autorização de aplicações.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
