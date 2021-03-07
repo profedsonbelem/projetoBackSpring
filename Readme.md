@@ -14,4 +14,10 @@ git remote add origin https://github.com/profedsonbelem/projetoBackSpring.git
 git branch -M main
 git push -u origin main
 
+==============
+
+"A partir de agora Data 07/03/2021"
+git clone "https://github.com/profedsonbelem/projetoBackSpring"
+git checkout entrega1
+
 
