@@ -10,8 +10,8 @@ import br.com.arq.back.entity.Usuario;
 
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
-	
-	 public Usuario findByEmailAndPassword(String email, String password);
-	 public List<Usuario>  findByUsername(String username);
-
+	  public Usuario findByEmailAndPassword(String email, String password);
+	  public List<Usuario>  findByUsername(String username);
+      public Usuario findByEmail(String email);
+      public Usuario findByToken(String token);
 }

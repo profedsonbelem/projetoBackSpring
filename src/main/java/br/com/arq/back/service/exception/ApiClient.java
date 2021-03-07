@@ -79,8 +79,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
-import br.com.arq.back.service.ciclico.Authentication;
-import br.com.arq.back.service.ciclico.HttpBasicAuth;
+import br.com.arq.back.serviceciclico.Authentication;
+import br.com.arq.back.serviceciclico.HttpBasicAuth;
 
  
 

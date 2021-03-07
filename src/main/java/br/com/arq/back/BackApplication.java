@@ -6,9 +6,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
+import it.ozimov.springboot.mail.configuration.EnableEmailTools;
+
+ 
 @RestController
 @EnableAutoConfiguration
+@SpringBootApplication
+@EnableEmailTools
 public class  BackApplication {
 
 	public static void main(String[] args) {
@@ -19,5 +23,5 @@ public class  BackApplication {
 	public String hello() {
 		return "Hello Pedro!";
 	}
-
+ 
 }

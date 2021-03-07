@@ -3,6 +3,7 @@ package br.com.arq.back.entity;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario implements   Serializable {
+public class Usuario implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -27,14 +28,13 @@ public class Usuario implements   Serializable {
 	@Transient
 	private static transient SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name="uuidmain", length=250)
+
+	@Column(name = "uuidmain", length = 250)
 	private String uuidmain;
-	
+
 	@JsonProperty("username")
 	@Column(name = "username")
 	private String username;
@@ -47,20 +47,22 @@ public class Usuario implements   Serializable {
 	@JsonProperty("passwordInitial")
 	@Column(name = "passwordInitial")
 	private String passwordInitial;
-	
+
 	@JsonProperty("password")
 	@Column(name = "password")
 	private String password;
-	
-	
+
 	@JsonProperty("email")
 	@Column(name = "email")
-	@Email(message = "Email fora do Padrao !!!")
 	private String email;
 
 	@JsonProperty("perfil")
 	@Column(name = "perfil")
 	private String perfil;
+
+	@JsonProperty("nivel")
+	@Column(name = "nivel")
+	private Integer nivel;
 
 	@JsonProperty("token")
 	@Column(name = "token")
@@ -75,19 +77,16 @@ public class Usuario implements   Serializable {
 		this.token = "token";
 		this.perfil = "usuario";
 		this.statusUsuario = "ativo";
-	   //  this.uuidmain = UUID.randomUUID().toString();
-	     this.passwordInitial ="password";
+		this.uuidmain = UUID.randomUUID().toString();
+		this.passwordInitial = "password";
 	}
 
 	public Usuario() {
 		this.dataCadastro = new Date();
 	}
 
-	
-	
 	public Usuario(Long id, String uuidmain, String username, Date dataCadastro, String passwordInitial,
-			String password, @Email(message = "Email fora do Padrao !!!") String email, String perfil, String token,
-			String statusUsuario) {
+			String password, String email, String perfil, Integer nivel, String token, String statusUsuario) {
 		super();
 		this.id = id;
 		this.uuidmain = uuidmain;
@@ -97,34 +96,34 @@ public class Usuario implements   Serializable {
 		this.password = password;
 		this.email = email;
 		this.perfil = perfil;
+		this.nivel = nivel;
 		this.token = token;
 		this.statusUsuario = statusUsuario;
+		this.gerenciarPerfil();
 	}
 
-
-
-	public Usuario(String uuidmain, String username, String passwordInital, String password, @Email(message = "Email fora do Padrao !!!") String email) {
+	public Usuario(String uuidmain, String username, String passwordInital, String password,
+			@Email(message = "Email fora do Padrao !!!") String email) {
 		super();
 		this.uuidmain = uuidmain;
 		this.username = username;
 		this.passwordInitial = passwordInital;
 		this.password = password;
 		this.email = email;
-		 
+		this.gerenciarPerfil();
+
 	}
 
 	public Usuario(String email, String password) {
 		this.password = password;
 		this.email = email;
-		/** @after */
+
 		this.gerenciarPerfil();
 	}
 
-	/**
-	 * @After Constructor
-	 */
 	public void gerenciarPerfil() {
-		if (this.getEmail().equalsIgnoreCase("admin@gmail.com") || this.getEmail().equalsIgnoreCase("lu@gmail.com")) {
+		if (this.getEmail().equalsIgnoreCase("admin@gmail.com")
+				|| this.getEmail().equalsIgnoreCase("felipe01cnh@gmail.com")) {
 			this.perfil = "admin";
 		} else {
 			this.perfil = "user";
@@ -132,7 +131,12 @@ public class Usuario implements   Serializable {
 
 	}
 
- 
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", uuidmain=" + uuidmain + ", username=" + username + ", dataCadastro="
+				+ dataCadastro + ", passwordInitial=" + passwordInitial + ", password=" + password + ", email=" + email
+				+ ", perfil=" + perfil + ", token=" + token + ", statusUsuario=" + statusUsuario + "]";
+	}
 
 	public static SimpleDateFormat getSdf() {
 		return sdf;
@@ -142,7 +146,7 @@ public class Usuario implements   Serializable {
 		Usuario.sdf = sdf;
 	}
 
-	public String getUuidmain() {
+	public String resp() {
 		return uuidmain;
 	}
 
@@ -161,8 +165,6 @@ public class Usuario implements   Serializable {
 	public String getStatusUsuario() {
 		return statusUsuario;
 	}
-	
-	
 
 	public Long getId() {
 		return id;
@@ -220,22 +222,18 @@ public class Usuario implements   Serializable {
 		this.token = token;
 	}
 
- 
- 
- 
 	public boolean isAccountNonExpired() {
 		return true;
 	}
 
- 
 	public boolean isAccountNonLocked() {
 		return true;
 	}
- 
+
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
- 
+
 	public boolean isEnabled() {
 		return true;
 	}
@@ -247,7 +245,13 @@ public class Usuario implements   Serializable {
 	public void setPasswordInitial(String passwordInitial) {
 		this.passwordInitial = passwordInitial;
 	}
-	
-	
+
+	public Integer getNivel() {
+		return nivel;
+	}
+
+	public void setNivel(Integer nivel) {
+		this.nivel = nivel;
+	}
 
 }

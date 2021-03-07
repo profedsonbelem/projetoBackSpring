@@ -98,21 +98,7 @@ public class Cliente implements Serializable {
 	@Column(length = 10)
 	private String cep; 
 	
-	
-//	@OneToOne(mappedBy = "cliente", cascade = { CascadeType.ALL })
-//	private EnderecoCliente enderecoCliente;
-
-//	@OneToMany(mappedBy = "cliente", cascade = { CascadeType.ALL })
-//	private Set<EnderecoFoto> enderecoFoto = new HashSet<EnderecoFoto>();
-//
-//	@OneToMany(mappedBy = "cliente", cascade = { CascadeType.ALL })
-//	private Set<Telefone> telefones = new HashSet<Telefone>();
-//
-//	@OneToMany(mappedBy = "cliente", cascade = { CascadeType.ALL })
-//	private Set<ImageModel> fotos = new HashSet<ImageModel>();
-//
-//	@OneToOne(mappedBy = "cliente", cascade = { CascadeType.ALL })
-//	private Negociacao negociacao;
+ 
 
 	public Cliente() {
 

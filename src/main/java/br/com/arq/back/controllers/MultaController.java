@@ -166,7 +166,7 @@ public class MultaController {
 	
 	@PostMapping("/gravar")
 	public ResponseEntity<?> gravar() {
-	 List<Multa> multas=	 mdao.saveAll(loadLeve());
+	         List<Multa> multas=	 mdao.saveAll(loadLeve());
 		 return ResponseEntity.status(200).body(multas);
 	}
 
