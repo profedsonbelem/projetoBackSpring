@@ -18,6 +18,6 @@ git push -u origin main
 
 ## "A partir de agora Data 07/03/2021"
 * git clone "https://github.com/profedsonbelem/projetoBackSpring"
-* git checkout entrega1
+* git checkout entrega1 -> `Colocar o nome da brach`
 
 
