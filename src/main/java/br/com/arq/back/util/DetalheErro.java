@@ -6,7 +6,10 @@ import java.util.Date;
  
 public class DetalheErro implements Serializable {
 
-    private String titulo;
+  
+	private static final long serialVersionUID = 1L;
+
+	private String titulo;
 
     private Long status;
 

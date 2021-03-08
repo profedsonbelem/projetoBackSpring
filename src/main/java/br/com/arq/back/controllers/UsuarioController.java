@@ -46,7 +46,7 @@ public class UsuarioController {
 	
 	@PostMapping("/gerar")
 	public ResponseEntity<?> generateToken(@RequestBody Usuario respusuario) throws NoSuchAlgorithmException {
-			Usuario usuario = new Usuario();
+			Usuario usuario =  respusuario;
 			usuario.setUsername(respusuario.getUsername());
 			String token = UUID.randomUUID().toString();
 			usuario.setToken(token);
@@ -55,7 +55,9 @@ public class UsuarioController {
 			md.update((usuario.getPassword() + chave).getBytes());
 			BigInteger hash = new BigInteger(1, md.digest());
 			String resposta = hash.toString(16);
+			usuario.setPassword(resposta);
 			usuario.setToken(resposta + token);
+			usuario.gerenciarPerfil();
 			  dao.save(usuario);
 			return  ResponseEntity.status(200).body("token:" + usuario.getToken());
 		}
@@ -74,6 +76,7 @@ public class UsuarioController {
  			BigInteger hash = new BigInteger(1, md.digest());
  			  String resposta = hash.toString(16);
  			   usuario.setPassword(resposta);
+ 			   u.gerenciarPerfil();
  			   Usuario resp = dao.save(usuario);
  			if (resp == null) {
 				throw new IllegalArgumentException("Erro  dado do usuario");

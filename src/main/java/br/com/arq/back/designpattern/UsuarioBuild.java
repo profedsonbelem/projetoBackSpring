@@ -5,6 +5,7 @@ import java.util.Date;
 
 public class UsuarioBuild {
 
+	@SuppressWarnings("unused")
 	private static transient SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	private final Long id;

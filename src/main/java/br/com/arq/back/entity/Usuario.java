@@ -125,8 +125,10 @@ public class Usuario implements Serializable {
 		if (this.getEmail().equalsIgnoreCase("admin@gmail.com")
 				|| this.getEmail().equalsIgnoreCase("felipe01cnh@gmail.com")) {
 			this.perfil = "admin";
+			this.nivel=1;
 		} else {
 			this.perfil = "user";
+			this.nivel=1;
 		}
 
 	}

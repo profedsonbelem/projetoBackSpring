@@ -1,12 +1,7 @@
 package br.com.arq.back.mg;
 
-import com.docusign.esign.model.Credential;
-
-import io.github.brfreitas.pagseguro.api.PagSeguro;
-import io.github.brfreitas.pagseguro.api.PagSeguroEnv;
 import io.github.brfreitas.pagseguro.api.application.authorization.AuthorizationRegistration;
 import io.github.brfreitas.pagseguro.api.application.authorization.AuthorizationRegistrationBuilder;
-import io.github.brfreitas.pagseguro.api.application.authorization.RegisteredAuthorization;
 import io.github.brfreitas.pagseguro.api.common.domain.PermissionCode;
 
 public class PagSeguroApi {
