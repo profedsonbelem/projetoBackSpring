@@ -3,10 +3,12 @@ package br.com.arq.back.entity;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -30,7 +32,7 @@ public class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long idUsuario;
 
 	@Column(name = "uuidmain", length = 250)
 	private String uuidmain;
@@ -72,6 +74,8 @@ public class Usuario implements Serializable {
 	@Column(name = "status")
 	private String statusUsuario;
 
+ 
+	
 	{
 		this.dataCadastro = new Date();
 		this.token = "token";
@@ -88,7 +92,7 @@ public class Usuario implements Serializable {
 	public Usuario(Long id, String uuidmain, String username, Date dataCadastro, String passwordInitial,
 			String password, String email, String perfil, Integer nivel, String token, String statusUsuario) {
 		super();
-		this.id = id;
+		this.idUsuario = id;
 		this.uuidmain = uuidmain;
 		this.username = username;
 		this.dataCadastro = dataCadastro;
@@ -133,11 +137,14 @@ public class Usuario implements Serializable {
 
 	}
 
+ 
+
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", uuidmain=" + uuidmain + ", username=" + username + ", dataCadastro="
-				+ dataCadastro + ", passwordInitial=" + passwordInitial + ", password=" + password + ", email=" + email
-				+ ", perfil=" + perfil + ", token=" + token + ", statusUsuario=" + statusUsuario + "]";
+		return "Usuario [idUsuario=" + idUsuario + ", uuidmain=" + uuidmain + ", username=" + username
+				+ ", dataCadastro=" + dataCadastro + ", passwordInitial=" + passwordInitial + ", password=" + password
+				+ ", email=" + email + ", perfil=" + perfil + ", nivel=" + nivel + ", token=" + token
+				+ ", statusUsuario=" + statusUsuario + ", products=" + "]";
 	}
 
 	public static SimpleDateFormat getSdf() {
@@ -168,12 +175,14 @@ public class Usuario implements Serializable {
 		return statusUsuario;
 	}
 
-	public Long getId() {
-		return id;
+ 
+
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setIdUsuario(Long idUsuario) {
+		this.idUsuario = idUsuario;
 	}
 
 	public void setStatusUsuario(String statusUsuario) {
@@ -255,5 +264,12 @@ public class Usuario implements Serializable {
 	public void setNivel(Integer nivel) {
 		this.nivel = nivel;
 	}
+ 
+	public String getUuidmain() {
+		return uuidmain;
+	}
 
+ 
+	
+	
 }

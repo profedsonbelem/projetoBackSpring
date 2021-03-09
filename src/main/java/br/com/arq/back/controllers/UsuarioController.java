@@ -202,7 +202,7 @@ public class UsuarioController {
 			if (resposta == null) {
 				throw new Exception("Email não encontrado");
 			}
-			usuario.setId(resposta.getId());
+			usuario.setIdUsuario(resposta.getIdUsuario());
 			usuario.setUsername(resposta.getUsername());
 			usuario.setEmail(resposta.getEmail());
 			usuario.setPassword("-1");
@@ -220,7 +220,7 @@ public class UsuarioController {
 			Usuario resp1 = dao.findByToken(token);
 			Usuario resp = dao.findById(id).get();
 			if ((resp1.equals(resp)) && (resp.getPassword().equals("-1"))) {
-				usu.setId(resp.getId());
+				usu.setIdUsuario(resp.getIdUsuario());
 				usu.setUsername(resp.getUsername());
 				usu.setEmail(resp.getEmail());
 				usu.setPerfil(resp.getPerfil());

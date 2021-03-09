@@ -1,58 +1,74 @@
 package br.com.arq.back.entity;
 
-import java.io.Serializable;
- 
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Set;
 
-//@Entity
-//@Table(name="produto")
-public class Produto implements Serializable{
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-	private static final long serialVersionUID = 1L;
-	//@Id
-	//@GeneratedValue(strategy = GenerationType.IDENTITY)
-	//@Column(name="idProduto")
-	//@JsonProperty("idproduto")
+@Entity
+@Table(name = "PRODUTO")
+ public class Produto {
+	@Id
+	@Column(name = "ID_PRODUTO")
 	private Long idProduto;
 	
-	//@Column(name="nomeproduto")
-	//@JsonProperty(value="nomeproduto")
-	private String nomeProduto;
-	
-	
-	//@Column(name="precoproduto")
-	//@JsonProperty(value="precoProduto")
-	private Double precoProduto;
-	
-	//@Column(name="nomeproduto_negociado")
-	//@JsonProperty(value="precoproduto-negociado")
-	private Double precoProdutoNegociado;
+	@Column(name = "DESCRICAO_PRODUTO", length = 80)
+	private String productDescription;
  
-	//@Column(columnDefinition =" enum ('sim','nao')")
-	//@JsonProperty(value="escolhanegocio")
-	private String escolhaNegocio;
+	@Column(name = "VALOR_PRODUTO", precision = 18, scale = 2)
+	private BigDecimal productValue;
+
+
+	@Column(name = "DESCRICAO_PRODUTO_Comercializar")
+	private String  ecommerceProductDescription;
 	
-	//@OneToOne(mappedBy="produto",cascade= {CascadeType.ALL})
-	private ItemVenda item;
+	@OneToMany(cascade = {}, mappedBy = "produto", fetch = FetchType.LAZY)
+	private Set<Promocao> promocoes;
 	
+	@OneToMany(cascade = {}, mappedBy = "produto", fetch = FetchType.LAZY)
+	private Set<Campanha> campanhas;
+	
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@JoinColumn(name = "idUsuario", referencedColumnName = "idUsuario", insertable = true)
+//	private Usuario usuario;
+	
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DAT_MODIFICACAO")
+	private Date modificationDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "DAT_Create")
+	private Date dataCriacao;
 	
 	public Produto() {
 	}
 	
 	 
-	{
-		this.precoProduto=0.;
-		this.precoProdutoNegociado =0.;
-	}
+	
  
 
-	public Produto(Long idProduto, String nomeProduto, Double precoProduto, Double precoProdutoNegociado,
-			String escolhaNegocio) {
+	public Produto(Long idProduto, String productDescription, BigDecimal productValue,
+			String ecommerceProductDescription, Set<Promocao> promocoes, Set<Campanha> campanhas,
+			Date modificationDate) {
 		super();
 		this.idProduto = idProduto;
-		this.nomeProduto = nomeProduto;
-		this.precoProduto = precoProduto;
-		this.precoProdutoNegociado= precoProdutoNegociado;
-		this.escolhaNegocio = escolhaNegocio;
+		this.productDescription = productDescription;
+		this.productValue = productValue;
+		this.ecommerceProductDescription = ecommerceProductDescription;
+		this.promocoes = promocoes;
+		this.campanhas = campanhas;
+		this.modificationDate = modificationDate;
 	}
 
 
@@ -61,72 +77,58 @@ public class Produto implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Produto [idProduto=" + idProduto + ", nomeProduto=" + nomeProduto + ", precoProduto=" + precoProduto
-				+ ", precoProdutoDetalhe=" + precoProdutoNegociado + "]";
+		return "Product [idProduto=" + idProduto + ", productDescription=" + productDescription + ", productValue="
+				+ productValue + ", ecommerceProductDescription=" + ecommerceProductDescription + ", promocoes="
+				+ promocoes + ", campanhas=" + campanhas + ", modificationDate=" + modificationDate + "]";
 	}
+
+
+
 
 
 	public Long getIdProduto() {
 		return idProduto;
 	}
+
 	public void setIdProduto(Long idProduto) {
 		this.idProduto = idProduto;
 	}
-	public String getNomeProduto() {
-		return nomeProduto;
-	}
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
-	}
-	public Double getPrecoProduto() {
-		return precoProduto;
-	}
-	public void setPrecoPRoduto(Double precoProduto) {
-		this.precoProduto = precoProduto;
+
+	public String getProductDescription() {
+		return productDescription;
 	}
 
-	public Double getPrecoProdutoNegociado() {
-		return precoProdutoNegociado;
+	public void setProductDescription(String productDescription) {
+		this.productDescription = productDescription;
 	}
 
-
-	public void setPrecoProdutoNegociado(Double precoProdutoNegociado) {
-		this.precoProdutoNegociado = precoProdutoNegociado;
+	public BigDecimal getProductValue() {
+		return productValue;
 	}
 
-
-	public String getEscolhaNegocio() {
-		return escolhaNegocio;
+	public void setProductValue(BigDecimal productValue) {
+		this.productValue = productValue;
 	}
 
-
-	public void setEscolhaNegocio(String escolhaNegocio) {
-		this.escolhaNegocio = escolhaNegocio;
+	public String getEcommerceProductDescription() {
+		return ecommerceProductDescription;
 	}
 
-
-	public ItemVenda getItem() {
-		return item;
+	public void setEcommerceProductDescription(String ecommerceProductDescription) {
+		this.ecommerceProductDescription = ecommerceProductDescription;
 	}
 
-
-	public void setItem(ItemVenda item) {
-		this.item = item;
+ 
+	public Date getModificationDate() {
+		return modificationDate;
 	}
 
-
-	public void setPrecoProduto(Double precoProduto) {
-		this.precoProduto = precoProduto;
+	public void setModificationDate(Date modificationDate) {
+		this.modificationDate = modificationDate;
 	}
 
-	public Double gerarNegocio() {
-		if (this.escolhaNegocio.equals("sim")) {
-		return	this.precoProdutoNegociado;
-		}else {
-		return this.precoProduto;	
-		}
-	}
-	
-	
-	
+ 
+
+ 
+
 }
